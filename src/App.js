@@ -1,10 +1,15 @@
-import './App.css';
-import SignUp from './SignUp/SignUp';
+import { Route, Switch } from "react-router-dom";
+import "./App.css";
+import Login from "./Login/Login";
+import SignUp from "./SignUp/SignUp";
 
 function App() {
   return (
     <div className="App">
-      <SignUp />
+      <Switch>
+        <Route path='/signup'><SignUp /></Route>
+        <Route path='/login'><Login /></Route>
+      </Switch>
     </div>
   );
 }
