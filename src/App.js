@@ -2,7 +2,8 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import "./App.css";
 import Login from "./Login/Login";
 import SignUp from "./SignUp/SignUp";
-import Welcome from "./Welcome";
+import MailBoxClient from "./Mail/MailBoxClient";
+import ComposeMail from "./Mail/ComposeMail";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         </Route>
         <Route path='/signup'><SignUp /></Route>
         <Route path='/login'><Login /></Route>
-        <Route path='/mail-box-client'><Welcome /></Route>
+        <Route path='/mail-box-client'><MailBoxClient /></Route>
+        <Route path='/compose'><ComposeMail /></Route>
       </Switch>
     </div>
   );

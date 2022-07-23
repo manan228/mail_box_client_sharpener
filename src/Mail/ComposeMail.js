@@ -2,8 +2,11 @@ import { useRef } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import axios from "axios";
+import { useSelector } from "react-redux/es/exports";
 
 const ComposeMail = () => {
+  const loggedInEmail = useSelector((state) => state.auth.loggedInEmail);
+  console.log('loggied in Email:', loggedInEmail)
   const enteredToInputRef = useRef();
   const enteredSubjectInputRef = useRef();
   let bodyText;
@@ -17,14 +20,16 @@ const ComposeMail = () => {
     const enteredSubject = enteredSubjectInputRef.current.value;
 
     const mailDataObj = {
-      to: enteredTo,
+      from: loggedInEmail,
       subject: enteredSubject,
       body: bodyText,
     };
 
+    const toFormattedEmail = enteredTo.replace(/[^a-zA-Z0-9]/g, "");
+
     try {
       const response = await axios.post(
-        `https://mail-box-client-e6d4c-default-rtdb.firebaseio.com/mailData.json`,
+        `https://mail-box-client-e6d4c-default-rtdb.firebaseio.com/${toFormattedEmail}Inbox.json`,
         mailDataObj
       );
 

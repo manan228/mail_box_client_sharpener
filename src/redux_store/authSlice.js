@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialAuthState = {
   token: null,
+  loggedInEmail: null,
 };
 
 const authSlice = createSlice({
@@ -9,8 +10,9 @@ const authSlice = createSlice({
   initialState: initialAuthState,
   reducers: {
     onTokenReceive(state, action) {
-        console.log(`inside redux`)
-      state.token = action.payload;
+      state.token = action.payload.token;
+      state.loggedInEmail = action.payload.loginEmail;
+      // console.log(state.email)
     },
   },
 });

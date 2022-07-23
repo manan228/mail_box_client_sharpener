@@ -33,8 +33,9 @@ const Login = () => {
       );
 
       const token = response.data.idToken;
+      const loginEmail = response.data.email
 
-      dispatch(authActions.onTokenReceive(token));
+      dispatch(authActions.onTokenReceive({token, loginEmail}));
 
       history.replace("/mail-box-client");
     } catch (err) {
