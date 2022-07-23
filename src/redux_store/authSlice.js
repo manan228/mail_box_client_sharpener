@@ -9,7 +9,8 @@ const authSlice = createSlice({
   initialState: initialAuthState,
   reducers: {
     onTokenReceive(state, action) {
-      state.token = action.token;
+        console.log(`inside redux`)
+      state.token = action.payload;
     },
   },
 });

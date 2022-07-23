@@ -1,12 +1,15 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { authActions } from "../redux_store/auth-slice";
+import { authActions } from "../redux_store/authSlice.js";
+import { useHistory } from "react-router-dom";
 
 const Login = () => {
+  const history = useHistory();
+
   const dispatch = useDispatch();
 
-//   console.log(authActions)
+  const [error, setError] = useState(null);
 
   const enteredEmailInputRef = useRef();
   const enteredPasswordInputRef = useRef();
@@ -29,12 +32,14 @@ const Login = () => {
         loginObj
       );
 
-      // console.log(response.data.idToken);
       const token = response.data.idToken;
 
       dispatch(authActions.onTokenReceive(token));
+
+      history.replace("/mail-box-client")
     } catch (err) {
-      console.log(err);
+      const error = err.response.data.error.errors[0].message;
+      setError(error);
     }
   };
 
@@ -51,15 +56,10 @@ const Login = () => {
           <input type="password" required ref={enteredPasswordInputRef} />
         </div>
         <button type="submit">Login</button>
-        {/* {error === "EMAIL_EXISTS" && (
-      <p>Email already registered, try to login with same email</p>
-    )}
-    {error === "OPERATION_NOT_ALLOWED" && (
-      <p>
-        Password sign-in is disabled for this project, contack webside
-        developer
-      </p>
-    )} */}
+        {error === "EMAIL_NOT_FOUND" && (
+          <p>Please check the email and try again</p>
+        )}
+        {error === "INVALID_PASSWORD" && <p>Incorrect password try again</p>}
       </form>
       <button>Forgot Password</button>
       <div>Dont have an account? Sign up</div>
