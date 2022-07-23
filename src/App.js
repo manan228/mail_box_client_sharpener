@@ -8,11 +8,11 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route path="*" exact>
-          <Login />
+        <Route path="/" exact>
+          <Redirect to='/login' />
         </Route>
         <Route path='/signup'><SignUp /></Route>
-        <Route path='/login' exact><Login /></Route>
+        <Route path='/login'><Login /></Route>
         <Route path='/mail-box-client'><Welcome /></Route>
       </Switch>
     </div>

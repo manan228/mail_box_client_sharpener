@@ -36,7 +36,7 @@ const Login = () => {
 
       dispatch(authActions.onTokenReceive(token));
 
-      history.replace("/mail-box-client")
+      history.replace("/mail-box-client");
     } catch (err) {
       const error = err.response.data.error.errors[0].message;
       setError(error);
