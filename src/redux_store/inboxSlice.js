@@ -9,6 +9,7 @@ const inboxSlice = createSlice({
   initialState: initialInboxState,
   reducers: {
     onEmailFetch(state, action) {
+      console.log(action)
       state.emails = action.payload;
     },
     onEmailRead(state, action) {
