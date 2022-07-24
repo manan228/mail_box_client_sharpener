@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { inboxActions } from "../redux_store/inboxSlice";
 
 const SingleEmail = (props) => {
+  console.log(`inside simgle email`)
   const dispatch = useDispatch();
 
   const emails = useSelector((state) => state.inbox.emails);

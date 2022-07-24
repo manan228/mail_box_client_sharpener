@@ -8,15 +8,12 @@ const Welcome = () => {
   const [unreadCount, setUnreadCount] = useState(0);
 
   useEffect(() => {
-    console.log(Object.keys(emails.emails));
-    console.log(emails.emails);
     if (emails) {
-      console.log(emails)
+      let count = 0;
       Object.keys(emails.emails).map((email) => {
-    console.log(emails.emails[email])
-            if (emails.emails[email].read === false) {
-              console.log(`inside`, email)
-          setUnreadCount(unreadCount + 1);
+        if (emails.emails[email].read === false) {
+          count = count + 1;
+          setUnreadCount(count);
         }
       });
     }
