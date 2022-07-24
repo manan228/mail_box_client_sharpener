@@ -9,13 +9,14 @@ const ReceiveEmails = () => {
   const [singleEmail, setSingleEmail] = useState(false);
 
   const emails = useSelector((state) => state.inbox.emails);
-  console.log(emails)
+  console.log(emails);
   const dispatch = useDispatch();
 
   const loggedInEmail = useSelector((state) => state.auth.loggedInEmail);
   const formattedLoggedInEmail = loggedInEmail.replace(/[^a-zA-Z0-9]/g, "");
 
   const getEmails = async () => {
+    // setInterval(() => {}, 2000);
     try {
       const response = await axios.get(
         `https://mail-box-client-e6d4c-default-rtdb.firebaseio.com/${formattedLoggedInEmail}Inbox.json`
@@ -30,7 +31,10 @@ const ReceiveEmails = () => {
     }
   };
   useEffect(() => {
-    getEmails();
+    setInterval(() => {
+      console.log(`get emails called`);
+      getEmails();
+    }, 2000);
   }, []);
 
   const onSingleEmailClickHandler = (email) => {
@@ -60,7 +64,7 @@ const ReceiveEmails = () => {
           {!singleEmail &&
             emails !== null &&
             Object.keys(emails).map((email) => {
-              console.log(`inside email found`,email)
+              console.log(`inside email found`, email);
               let read = false;
               if (emails[email].read !== false) {
                 read = true;
@@ -88,7 +92,8 @@ const ReceiveEmails = () => {
           {singleEmail && (
             <SingleEmail emailDetails={{ singleEmail, emails }} />
           )}
-          {emails === null && <p>No emails found</p> && console.log(`email === null hii`)}
+          {emails === null && <p>No emails found</p> &&
+            console.log(`email === null hii`)}
         </ul>
       </div>
     </>
