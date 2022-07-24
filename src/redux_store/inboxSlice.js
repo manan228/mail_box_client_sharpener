@@ -11,6 +11,9 @@ const inboxSlice = createSlice({
     onEmailFetch(state, action) {
       state.emails = action.payload;
     },
+    onEmailRead(state, action) {
+      state.emails[action.payload].read = true
+    }
   },
 });
 

@@ -4,6 +4,7 @@ import Login from "./Login/Login";
 import SignUp from "./SignUp/SignUp";
 import MailBoxClient from "./Mail/MailBoxClient";
 import ComposeMail from "./Mail/ComposeMail";
+import SingleEmail from "./Mail/SingleEmail";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/login'><Login /></Route>
         <Route path='/mail-box-client'><MailBoxClient /></Route>
         <Route path='/compose'><ComposeMail /></Route>
+        <Route path='/single-email'><SingleEmail /></Route>
       </Switch>
     </div>
   );

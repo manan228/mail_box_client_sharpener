@@ -6,7 +6,7 @@ import { useSelector } from "react-redux/es/exports";
 
 const ComposeMail = () => {
   const loggedInEmail = useSelector((state) => state.auth.loggedInEmail);
-  console.log('loggied in Email:', loggedInEmail)
+  console.log("loggied in Email:", loggedInEmail);
   const enteredToInputRef = useRef();
   const enteredSubjectInputRef = useRef();
   let bodyText;
@@ -23,6 +23,7 @@ const ComposeMail = () => {
       from: loggedInEmail,
       subject: enteredSubject,
       body: bodyText,
+      read: false,
     };
 
     const toFormattedEmail = enteredTo.replace(/[^a-zA-Z0-9]/g, "");
