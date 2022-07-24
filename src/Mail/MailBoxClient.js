@@ -31,6 +31,7 @@ const Welcome = () => {
     <>
       <h1>Welcome to Mail box client</h1>
       <button onClick={onComposeClickHandler}>Compose</button>
+      <button onClick={() => history.replace('/sent')}>Sent</button>
       <div>Unread emails {unreadCount}</div>
       {/* <span>{unreadCount}</span> */}
       <div>

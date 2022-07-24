@@ -2,11 +2,14 @@ import { useRef } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import axios from "axios";
-import { useSelector } from "react-redux/es/exports";
+import { useDispatch, useSelector } from "react-redux/es/exports";
+import { sentActions } from "../redux_store/sentSlice";
 
 const ComposeMail = () => {
   const loggedInEmail = useSelector((state) => state.auth.loggedInEmail);
   console.log("loggied in Email:", loggedInEmail);
+
+  const dispatch = useDispatch();
   const enteredToInputRef = useRef();
   const enteredSubjectInputRef = useRef();
   let bodyText;
@@ -35,6 +38,17 @@ const ComposeMail = () => {
       );
 
       console.log(response);
+
+      // dispatch(sentActions.onEmailSend(mailDataObj))
+
+      const formattedLoggedInEmail = loggedInEmail.replace(/[^a-zA-Z0-9]/g, "");
+
+      const sentResponse = await axios.post(
+        `https://mail-box-client-e6d4c-default-rtdb.firebaseio.com/${formattedLoggedInEmail}SentMail.json`,
+        mailDataObj
+      );
+
+      console.log(sentResponse);
     } catch (err) {
       console.log(err);
     }

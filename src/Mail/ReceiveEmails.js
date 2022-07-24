@@ -56,7 +56,6 @@ const ReceiveEmails = () => {
   return (
     <>
       <div>
-        {/* {console.log(emails, singleEmail)} */}
         <ul>
           {!singleEmail &&
             emails !== null &&
